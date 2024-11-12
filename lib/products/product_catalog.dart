@@ -1,6 +1,5 @@
-import 'package:album_catalog/products/product_detail.dart';
+import 'package:album_catalog/products/category_products.dart';
 import 'package:album_catalog/products/product_list.dart';
-import 'package:album_catalog/products/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -38,86 +37,6 @@ class _ProductCatalogPageState extends State<ProductCatalogPage>
     return formattedAmount;
   }
 
-  final List<String> categories = [
-    'Photobooks',
-    'Framed Prints',
-    'Calendars',
-    // 'Kids',
-    // 'Decor',
-    // 'Gifts',
-    // 'Card Stock Prints',
-    // 'Photo Prints',
-    // 'Bags and Pouches',
-    // 'Stationery',
-    // 'Accessories',
-    // 'Chocolates',
-  ];
-
-  final Map<String, Map<String, dynamic>> categorizedProducts = {
-    'Photobooks': {
-      'products': products.where((p) => p.category == 'Photobooks').toList(),
-      'titleImage': 'assets/images/header_image/Photobook.webp',
-      'subtitle': 'Create memories with custom photobooks',
-    },
-    'Framed Prints': {
-      'products': products.where((p) => p.category == 'Framed Prints').toList(),
-      'titleImage': 'assets/images/header_image/Framed Prints.webp',
-      'subtitle': 'Elegant framed prints for your home',
-    },
-    'Calendars': {
-      'products': products.where((p) => p.category == 'Calendars').toList(),
-      'titleImage': 'assets/images/header_image/Calendars.webp',
-      'subtitle': 'Plan your year with beautiful calendars',
-    },
-    // 'Kids': {
-    //   'products': products.where((p) => p.category == 'Kids').toList(),
-    //   'titleImage': 'assets/images/header_image/Kids.webp',
-    //   'subtitle': 'Fun and colorful prints for kids',
-    // },
-    // 'Decor': {
-    //   'products': products.where((p) => p.category == 'Decor').toList(),
-    //   'titleImage': 'assets/images/header_image/Decor.webp',
-    //   'subtitle': 'Stylish decor items for every space',
-    // },
-    // 'Gifts': {
-    //   'products': products.where((p) => p.category == 'Gifts').toList(),
-    //   'titleImage': 'assets/images/header_image/Gifts.webp',
-    //   'subtitle': 'Thoughtful gifts for every occasion',
-    // },
-    // 'Card Stock Prints': {
-    //   'products':
-    //       products.where((p) => p.category == 'Card Stock Prints').toList(),
-    //   'titleImage': 'assets/images/header_image/Card Stock Prints.webp',
-    //   'subtitle': 'High-quality card stock prints',
-    // },
-    // 'Photo Prints': {
-    //   'products': products.where((p) => p.category == 'Photo Prints').toList(),
-    //   'titleImage': 'assets/images/header_image/Photo Prints.webp',
-    //   'subtitle': 'Print your photos with premium quality',
-    // },
-    // 'Bags and Pouches': {
-    //   'products':
-    //       products.where((p) => p.category == 'Bags and Pouches').toList(),
-    //   'titleImage': 'assets/images/header_image/Bags and Pouches.webp',
-    //   'subtitle': 'Stylish bags and pouches for every need',
-    // },
-    // 'Stationery': {
-    //   'products': products.where((p) => p.category == 'Stationery').toList(),
-    //   'titleImage': 'assets/images/header_image/Stationery.webp',
-    //   'subtitle': 'Quality stationery for every occasion',
-    // },
-    // 'Accessories': {
-    //   'products': products.where((p) => p.category == 'Accessories').toList(),
-    //   'titleImage': 'assets/images/header_image/Accessories.webp',
-    //   'subtitle': 'Accessories to complement your style',
-    // },
-    // 'Chocolates': {
-    //   'products': products.where((p) => p.category == 'Chocolates').toList(),
-    //   'titleImage': 'assets/images/header_image/Chocolates.webp',
-    //   'subtitle': 'Indulge in delicious chocolates',
-    // },
-  };
-
   @override
   void initState() {
     super.initState();
@@ -127,11 +46,7 @@ class _ProductCatalogPageState extends State<ProductCatalogPage>
   void _onScroll() {
     double offset = 0.0;
     for (var category in categorizedProducts.keys) {
-      double sectionHeight =
-          ((categorizedProducts[category]!['products'].length / 2).ceil() *
-                      230 +
-                  200)
-              .toDouble();
+      double sectionHeight = (260).toDouble();
       if (scrollController.offset < offset + sectionHeight) {
         if (selectedCategory != category) {
           setState(() {
@@ -155,20 +70,6 @@ class _ProductCatalogPageState extends State<ProductCatalogPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 5,
-        centerTitle: true,
-        backgroundColor: const Color(0xFFE8D3B7),
-        title: const Text(
-          'PixVault',
-          style: TextStyle(
-            fontSize: 28,
-            fontFamily: 'Poppins',
-            fontWeight: FontWeight.w600,
-            color: Color(0xFF3D3D3D),
-          ),
-        ),
-      ),
       body: Column(
         children: [
           const SizedBox(height: 7),
@@ -181,22 +82,22 @@ class _ProductCatalogPageState extends State<ProductCatalogPage>
               children: [
                 for (var category in categorizedProducts.keys) ...[
                   buildCategoryHeader(category),
-                  GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 20,
-                      crossAxisSpacing: 1,
-                    ),
-                    itemCount:
-                        categorizedProducts[category]!['products'].length,
-                    itemBuilder: (context, index) {
-                      return buildProductCard(
-                          categorizedProducts[category]!['products'][index]);
-                    },
-                  ),
+                  // GridView.builder(
+                  //   shrinkWrap: true,
+                  //   physics: const NeverScrollableScrollPhysics(),
+                  //   gridDelegate:
+                  //       const SliverGridDelegateWithFixedCrossAxisCount(
+                  //     crossAxisCount: 2,
+                  //     mainAxisSpacing: 2,
+                  //     crossAxisSpacing: 1,
+                  //   ),
+                  //   itemCount:
+                  //       categorizedProducts[category]!['products'].length,
+                  //   itemBuilder: (context, index) {
+                  //     return buildProductCard(
+                  //         categorizedProducts[category]!['products'][index]);
+                  //   },
+                  // ),
                 ],
               ],
             ),
@@ -222,7 +123,7 @@ class _ProductCatalogPageState extends State<ProductCatalogPage>
                 duration: const Duration(milliseconds: 300),
                 decoration: BoxDecoration(
                   color: categories[index] == selectedCategory
-                      ? Colors.orange
+                      ? const Color.fromARGB(255, 232, 113, 165)
                       : Colors.grey[200],
                   borderRadius: BorderRadius.circular(7),
                 ),
@@ -254,10 +155,11 @@ class _ProductCatalogPageState extends State<ProductCatalogPage>
     });
 
     double offset = 0.0;
+    int categoryIndex = categories.indexOf(category);
+
     for (var cat in categorizedProducts.keys) {
       if (cat == category) break;
-      offset +=
-          (categorizedProducts[cat]!['products'].length / 2).ceil() * 200 + 290;
+      offset += (categoryIndex * 10) + 280;
     }
 
     scrollController.animateTo(
@@ -266,7 +168,6 @@ class _ProductCatalogPageState extends State<ProductCatalogPage>
       curve: Curves.easeInOut,
     );
 
-    int categoryIndex = categories.indexOf(category);
     double scrollPosition = (categoryIndex * 100.0)
         .clamp(0.0, categoryScrollController.position.maxScrollExtent);
     categoryScrollController.animateTo(
@@ -304,87 +205,35 @@ class _ProductCatalogPageState extends State<ProductCatalogPage>
           ),
         ),
         const SizedBox(height: 8),
-        Container(
-          height: 190,
-          // padding: const EdgeInsets.all(12),
-          margin: const EdgeInsets.all(12),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            image: DecorationImage(
-              image: AssetImage(
-                categorizedProducts[category]!['titleImage'],
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => CategoryProductPage(category: category),
               ),
-              fit: BoxFit.cover,
+            );
+          },
+          child: Hero(
+            tag: category,
+            child: Container(
+              height: 190,
+              // padding: const EdgeInsets.all(12),
+              margin: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                  image: AssetImage(
+                    categorizedProducts[category]!['titleImage'],
+                  ),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
           ),
         ),
         const SizedBox(height: 15),
       ],
-    );
-  }
-
-  Widget buildProductCard(Product product) {
-    return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => ProductDetailPage(product: product)),
-      ),
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 14),
-        padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey),
-          borderRadius: BorderRadius.circular(7),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Hero(
-              tag: product
-                  .title, // Use a unique tag, e.g., product.title or product.id
-              child: Container(
-                height: 100,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(7),
-                    topRight: Radius.circular(7),
-                  ),
-                  image: DecorationImage(
-                    image: NetworkImage(product.imageUrl),
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 8),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    product.title,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    formatCurrency((product.price)),
-                    style: const TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

@@ -1,23 +1,25 @@
-import 'package:album_catalog/products/product_catalog.dart';
+import 'package:album_catalog/homepage.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(seconds: 2), () {
+    // Navigate to HomePage after a delay
+    Future.delayed(const Duration(milliseconds: 800), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => ProductCatalogPage()),
+        MaterialPageRoute(
+            builder: (context) => HomePage(
+                  initialIndex: 0,
+                )),
       );
     });
 
     return Scaffold(
-      body: Center(
-        child: Text(
-          'Welcome to the Product Catalog',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      ),
+      backgroundColor: Colors.white,
+      body: Center(child: Image.asset('assets/images/splash.jpg')),
     );
   }
 }

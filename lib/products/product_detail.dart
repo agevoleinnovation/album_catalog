@@ -1,3 +1,4 @@
+import 'package:album_catalog/products/product_list.dart';
 import 'package:album_catalog/products/product_model.dart';
 import 'package:android_intent_plus/android_intent.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,7 @@ import 'package:intl/intl.dart';
 String formatCurrency(double amount) {
   NumberFormat formatter = NumberFormat.currency(
     locale: 'en_IN',
-    symbol: '\u20B9 ',
+    symbol: 'From \u20B9 ',
     decimalDigits: 2,
   );
 
@@ -34,13 +35,17 @@ class ProductDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        surfaceTintColor: Colors.white,
-        backgroundColor: Colors.white,
+        surfaceTintColor: Color(0xFFA40F4F),
+        backgroundColor: Color(0xFFA40F4F),
         title: Text(
-          '${product.title} in ${product.category}',
+          product.title,
           maxLines: 1,
           overflow: TextOverflow.fade,
-          style: const TextStyle(fontSize: 18),
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         automaticallyImplyLeading: false,
         leading: GestureDetector(
@@ -48,76 +53,105 @@ class ProductDetailPage extends StatelessWidget {
           child: const Icon(
             Icons.chevron_left_rounded,
             size: 24,
+            color: Colors.white,
           ),
         ),
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              blurRadius: 8,
-              offset: Offset(15, 19),
-            ),
-          ],
-        ),
-        padding: const EdgeInsets.only(bottom: 80.0), // Padding for the FAB
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Hero(
-                  tag: product.title,
-                  child: Container(
-                    height: 250,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        image: NetworkImage(product.imageUrl),
-                        fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.only(bottom: 80.0),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Hero(
+                tag: product.title,
+                child: Container(
+                  height: 250,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        product.imageUrl,
                       ),
+                      fit: BoxFit.cover,
                     ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 8,
+                        offset: Offset(0, 4),
+                      ),
+                    ],
                   ),
                 ),
-                const SizedBox(height: 8),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 25),
-                  child: Divider(),
+              ),
+              const SizedBox(height: 8),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 25),
+                child: Divider(),
+              ),
+              const SizedBox(height: 5),
+              Text(
+                product.title,
+                style: const TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(height: 5),
-                Text(
-                  product.title,
-                  style: const TextStyle(
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+              ),
+              const SizedBox(height: 8.0),
+              Text(
+                formatCurrency(product.price),
+                style: const TextStyle(
+                  fontSize: 20.0,
+                  color: Color(0xFF3D3D3D),
                 ),
-                const SizedBox(height: 8.0),
-                Text(
-                  formatCurrency(product.price),
-                  style: const TextStyle(
-                    fontSize: 20.0,
-                    color: Color(0xFF3D3D3D),
-                  ),
+              ),
+              const SizedBox(height: 30),
+              Text(
+                'Specifications:',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(height: 16.0),
-                Text(
-                  product.description,
-                  style: const TextStyle(fontSize: 16.0),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                (product.description).split('Available Sizes:').first.trim(),
+                style: const TextStyle(fontSize: 16.0),
+              ),
+              SizedBox(
+                height: 25,
+              ),
+              Text(
+                'Available Sizes:',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
-              ],
-            ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                (product.description).split('Available Sizes:').last,
+                style: const TextStyle(fontSize: 16.0),
+              ),
+              // Text(
+              //   product.imageUrl,
+              //   style: const TextStyle(fontSize: 16.0),
+              // ),
+            ],
           ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => _privacyPolicy(product),
-        backgroundColor: const Color(0xFF3D3D3D),
+        onPressed: () => sendEnquiry(product),
+        backgroundColor: const Color(0xFFA40F4F),
         label: const Padding(
           padding: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
           child: Text(
@@ -145,7 +179,7 @@ class ProductDetailPage extends StatelessWidget {
   }
 }
 
-void _privacyPolicy(Product product) {
+void sendEnquiry(Product product) {
   String message = '''
 Hello, 
 
@@ -156,12 +190,10 @@ I am interested in your product, and I would like to know more about it.
 - *Price:* ${formatCurrency(product.price)}
 
 Please provide me with further information at your earliest convenience.
-
-Thank you,
 ''';
 
   String url =
-      'whatsapp://send?phone=919408617250&text=${Uri.encodeComponent(message)}';
+      'whatsapp://send?phone=91$clientNumber&text=${Uri.encodeComponent(message)}';
   final AndroidIntent intent = AndroidIntent(
     action: 'action_view',
     data: Uri.parse(url).toString(),

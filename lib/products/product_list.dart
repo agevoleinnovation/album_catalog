@@ -1,508 +1,166 @@
 import 'package:album_catalog/products/product_model.dart';
 
+// String clientNumber = '9512588525';
+String clientNumber = '9408617250';
+
+final List<String> categories = [
+  'Photobooks',
+  'Framed Prints',
+  'Calendars',
+  'Home Decor (Wall Prints)',
+  'Kids',
+  'Cushion',
+  'Mugs',
+];
+
+final Map<String, Map<String, dynamic>> categorizedProducts = {
+  'Photobooks': {
+    'products': products.where((p) => p.category == 'Photobooks').toList(),
+    'titleImage': 'assets/images/header_image/photobooks.jpg',
+    'subtitle': 'Create memories with custom photobooks',
+  },
+  'Framed Prints': {
+    'products': products.where((p) => p.category == 'Framed Prints').toList(),
+    'titleImage': 'assets/images/header_image/framed-prints.jpg',
+    'subtitle': 'Add elegance to your space with personalized framed prints',
+  },
+  'Calendars': {
+    'products': products.where((p) => p.category == 'Calendars').toList(),
+    'titleImage': 'assets/images/header_image/calenders.jpg',
+    'subtitle': 'Personalized calendars to cherish every day of the year',
+  },
+  'Home Decor (Wall Prints)': {
+    'products': products
+        .where((p) => p.category == 'Home Decor (Wall Prints)')
+        .toList(),
+    'titleImage': 'assets/images/header_image/home-decor.jpg',
+    'subtitle': 'Transform your home with unique decor pieces',
+    'price': 3000,
+  },
+  'Kids': {
+    'products': products.where((p) => p.category == 'Kids').toList(),
+    'titleImage': 'assets/images/header_image/kids.jpg',
+    'subtitle': 'Create fun and lasting memories for the little ones',
+    'price': 3000,
+  },
+  'Cushion': {
+    'products': products.where((p) => p.category == 'Cushion').toList(),
+    'titleImage': 'assets/images/header_image/cushion.jpg',
+    'subtitle': 'Comfy, stylish cushions to add warmth to any room',
+    'price': 600,
+  },
+  'Mugs': {
+    'products': products.where((p) => p.category == 'Mugs').toList(),
+    'titleImage': 'assets/images/header_image/mugs.jpg',
+    'subtitle': 'Start your day with a mug customized just for you',
+    'price': 350,
+  },
+};
+
 List<Product> products = [
-  // Photobooks
+  //Photobooks
+
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  // Product 1
   Product(
-    title: "Classic and Live Photobook",
-    description:
-        "High-quality photo album for your memories. High-quality photo album for your memories. High-quality photo album for your memories. High-quality photo album for your memories. High-quality photo album for your memories. High-quality photo album for your memories. High-quality photo album for your memories. High-quality photo album for your memories. High-quality photo album for your memories. High-quality photo album for your memories. High-quality photo album for your memories. High-quality photo album for your memories. High-quality photo album for your memories. High-quality photo album for your memories. High-quality photo album for your memories. High-quality photo album for your memories. High-quality photo album for your memories. High-quality photo album for your memories. High-quality photo album for your memories. High-quality photo album for your memories.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 1500,
-    category: 'Photobooks',
-  ),
+      title: "LCP-08-001",
+      description: '''
+-  Rexin Cover
+-  Engraving on Cover Pad
+-  Engraving Text
+-  Same Rexin Bag
+
+Available Sizes:-  (12X30 & 12X36)\n-  (12X24 & 18X24)\n-  (17X24 & 16X24)\n-  (15X24)''',
+      price: 800,
+      category: "Photobooks",
+      imageUrl:
+          "https://firebasestorage.googleapis.com/v0/b/agevole-client.appspot.com/o/MyAlbumry%2FLCP-08-001-800.png?alt=media&token=7f63b3b3-d864-4f07-95ac-25a12a3b2f1a"),
+
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+  // Product 2
   Product(
-    title: "Deluxe Photobook",
-    description: "Premium photobook with elegant design.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 2000,
-    category: 'Photobooks',
-  ),
-  Product(
-    title: "Mini Photobook",
-    description: "Compact and stylish photobook.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 800,
-    category: 'Photobooks',
-  ),
-  Product(
-    title: "Wedding Photobook",
-    description: "Perfect for capturing wedding memories.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 2500,
-    category: 'Photobooks',
-  ),
-  Product(
-    title: "Travel Photobook",
-    description: "Special photobook for travel memories.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 1200,
-    category: 'Photobooks',
-  ),
+      title: "LCP-09-003",
+      description: '''
+-  Leather Cover
+-  Engraving on Cover Pad
+-  Engraving Text
+-  Same Leather Bag
+
+Available Sizes:-  (12X30 & 12X36)\n-  (12X24 & 18X24)\n-  (17X24 & 16X24)\n-  (15X24)''',
+      price: 900,
+      category: "Photobooks",
+      imageUrl:
+          "https://firebasestorage.googleapis.com/v0/b/agevole-client.appspot.com/o/MyAlbumry%2FLCP-09-003-900.png?alt=media&token=1c006aa8-3a36-45b1-9f86-08ddafc51351"),
+
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
   // Framed Prints
   Product(
-    title: "Framed Landscape",
-    description: "Elegant framed landscape print.",
+    title: "Hard Board Print",
+    description: '''
+- Sturdy Hard Board Frame
+- High-Quality Glossy Finish
+- UV Resistant Coating
+- Durable Protective Layer
+
+Available Sizes:- Wide range of custom sizes available to suit your needs
+''',
     imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 1090,
-    category: 'Framed Prints',
-  ),
-  Product(
-    title: "Framed Portrait",
-    description: "Beautiful framed portrait print.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
+        "https://firebasestorage.googleapis.com/v0/b/agevole-client.appspot.com/o/MyAlbumry%2Fframed-hard_board_prints.jpg?alt=media&token=13bb8a44-6c09-48d9-9d7c-62121d2befe4",
     price: 1200,
     category: 'Framed Prints',
   ),
+
   Product(
-    title: "Family Framed Print",
-    description: "Frame your precious family moments.",
+    title: "Acrylic Photo Prints",
+    description: '''
+- Premium Acrylic Surface
+- Enhanced Color Depth
+- Scratch and UV Resistant
+- Frameless Design for Modern Look
+
+Available Sizes:- All standard and custom sizes available upon request
+''',
     imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 1400,
-    category: 'Framed Prints',
-  ),
-  Product(
-    title: "Modern Art Frame",
-    description: "Contemporary framed art piece.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 1750,
-    category: 'Framed Prints',
-  ),
-  Product(
-    title: "Vintage Frame",
-    description: "Vintage styled framed print.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 1300,
+        "https://firebasestorage.googleapis.com/v0/b/agevole-client.appspot.com/o/MyAlbumry%2Fframed-acrylic_prints.jpg?alt=media&token=94e81136-f558-46fe-891b-e8a1fff9a168",
+    price: 900,
     category: 'Framed Prints',
   ),
 
   // Calendars
   Product(
-    title: "2025 Wall Calendar",
-    description: "Stylish wall calendar for 2025.",
+    title: "Framed Calendar",
+    description: '''
+- High-Quality Framed Print
+- Sleek and Modern Design
+- Easy to Hang and Replace
+- UV Resistant Finish to Prevent Fading
+
+Ideal for adding a stylish touch to any room.
+Available Sizes:8x12 inches, and custom sizes available
+  ''',
     imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 250,
-    category: 'Calendars',
-  ),
-  Product(
-    title: "Mini Desktop Calendar 2025",
-    description: "Compact calendar for your desk.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 339,
-    category: 'Calendars',
-  ),
-  Product(
-    title: "Family Calendar 2025",
-    description: "A calendar with space for family photos.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 400,
-    category: 'Calendars',
-  ),
-  Product(
-    title: "Pocket Calendar 2025",
-    description: "Handy pocket-sized calendar.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 100,
-    category: 'Calendars',
-  ),
-  Product(
-    title: "Vintage Calendar",
-    description: "Vintage themed calendar for your collection.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
+        "https://firebasestorage.googleapis.com/v0/b/agevole-client.appspot.com/o/MyAlbumry%2Fcalenders-framed.jpg?alt=media&token=76ef8126-79f5-4af9-af1d-83005fefe27d",
     price: 350,
     category: 'Calendars',
   ),
 
-  // Kids
   Product(
-    title: "Animal Themed Photo Book",
-    description: "Photo book with animal designs for kids.",
+    title: "Wooden Calendar",
+    description: '''
+- Premium Wooden Stand
+- Elegant Minimalist Design
+- Eco-Friendly Reusable Base
+- Durable and Long-Lasting
+
+Perfect for office or home decor.
+Available Sizes:Compact and Standard
+  ''',
     imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 450,
-    category: 'Kids',
-  ),
-  Product(
-    title: "Cartoon Wall Frame",
-    description: "Frame with cartoon characters for kids.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
+        "https://firebasestorage.googleapis.com/v0/b/agevole-client.appspot.com/o/MyAlbumry%2Fcalenders-wooden.jpg?alt=media&token=933e9327-1851-4703-920d-68c8153b9718",
     price: 500,
-    category: 'Kids',
-  ),
-  Product(
-    title: "Story Calendar 2025",
-    description: "Calendar with bedtime stories for kids.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 300,
-    category: 'Kids',
-  ),
-  Product(
-    title: "Toy Storage Bag",
-    description: "Customized bags for toys.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 700,
-    category: 'Kids',
-  ),
-  Product(
-    title: "Kids' Stationery Set",
-    description: "Personalized stationery for kids.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 250,
-    category: 'Kids',
-  ),
-
-  // Decor
-  Product(
-    title: "Canvas Print",
-    description: "Beautiful canvas print for home decor.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 500,
-    category: 'Decor',
-  ),
-  Product(
-    title: "Rustic Wall Hanging",
-    description: "Wall hanging with a rustic touch.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 700,
-    category: 'Decor',
-  ),
-  Product(
-    title: "Photo Clock",
-    description: "Wall clock with your photo.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 800,
-    category: 'Decor',
-  ),
-  Product(
-    title: "Wooden Frame",
-    description: "Classic wooden frame.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 450,
-    category: 'Decor',
-  ),
-  Product(
-    title: "Decorative Cushion",
-    description: "Personalized cushion for decor.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 600,
-    category: 'Decor',
-  ),
-
-  // Gifts
-  Product(
-    title: "Classic Photobook",
-    description: " High-quality photo album for your memories.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 1500,
-    category: 'Gifts',
-  ),
-  Product(
-    title: "Deluxe Photobook",
-    description: "Premium photobook with elegant design.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 2000,
-    category: 'Gifts',
-  ),
-  Product(
-    title: "Mini Photobook",
-    description: "Compact and stylish photobook.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 800,
-    category: 'Gifts',
-  ),
-  Product(
-    title: "Wedding Photobook",
-    description: "Perfect for capturing wedding memories.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 2500,
-    category: 'Gifts',
-  ),
-  Product(
-    title: "Travel Photobook",
-    description: "Special photobook for travel memories.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 1200,
-    category: 'Gifts',
-  ),
-
-  // Accessories
-  Product(
-    title: "Classic Photobook",
-    description: " High-quality photo album for your memories.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 1500,
-    category: 'Accessories',
-  ),
-  Product(
-    title: "Deluxe Photobook",
-    description: "Premium photobook with elegant design.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 2000,
-    category: 'Accessories',
-  ),
-  Product(
-    title: "Mini Photobook",
-    description: "Compact and stylish photobook.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 800,
-    category: 'Accessories',
-  ),
-  Product(
-    title: "Wedding Photobook",
-    description: "Perfect for capturing wedding memories.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 2500,
-    category: 'Accessories',
-  ),
-  Product(
-    title: "Travel Photobook",
-    description: "Special photobook for travel memories.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 1200,
-    category: 'Accessories',
-  ),
-
-  // Chocolates
-  Product(
-    title: "Classic Photobook",
-    description: " High-quality photo album for your memories.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 1500,
-    category: 'Chocolates',
-  ),
-  Product(
-    title: "Deluxe Photobook",
-    description: "Premium photobook with elegant design.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 2000,
-    category: 'Chocolates',
-  ),
-  Product(
-    title: "Mini Photobook",
-    description: "Compact and stylish photobook.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 800,
-    category: 'Chocolates',
-  ),
-  Product(
-    title: "Wedding Photobook",
-    description: "Perfect for capturing wedding memories.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 2500,
-    category: 'Chocolates',
-  ),
-  Product(
-    title: "Travel Photobook",
-    description: "Special photobook for travel memories.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 1200,
-    category: 'Chocolates',
-  ),
-
-  // Card Stock Prints
-  Product(
-    title: "Framed Landscape",
-    description: "Elegant framed landscape print.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 1090,
-    category: 'Card Stock Prints',
-  ),
-  Product(
-    title: "Framed Portrait",
-    description: "Beautiful framed portrait print.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 1200,
-    category: 'Card Stock Prints',
-  ),
-  Product(
-    title: "Family Framed Print",
-    description: "Frame your precious family moments.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 1400,
-    category: 'Card Stock Prints',
-  ),
-  Product(
-    title: "Modern Art Frame",
-    description: "Contemporary framed art piece.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 1750,
-    category: 'Card Stock Prints',
-  ),
-  Product(
-    title: "Vintage Frame",
-    description: "Vintage styled framed print.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 1300,
-    category: 'Card Stock Prints',
-  ),
-
-  // Photo Prints
-  Product(
-    title: "2025 Wall Calendar",
-    description: "Stylish wall calendar for 2025.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 250,
-    category: 'Photo Prints',
-  ),
-  Product(
-    title: "Mini Desktop Calendar 2025",
-    description: "Compact calendar for your desk.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 339,
-    category: 'Photo Prints',
-  ),
-  Product(
-    title: "Family Calendar 2025",
-    description: "A calendar with space for family photos.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 400,
-    category: 'Photo Prints',
-  ),
-  Product(
-    title: "Pocket Calendar 2025",
-    description: "Handy pocket-sized calendar.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 100,
-    category: 'Photo Prints',
-  ),
-  Product(
-    title: "Vintage Calendar",
-    description: "Vintage themed calendar for your collection.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 350,
-    category: 'Photo Prints',
-  ),
-
-  // Bags and Pouches
-  Product(
-    title: "Animal Themed Photo Book",
-    description: "Photo book with animal designs for Bags and Pouches.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 450,
-    category: 'Bags and Pouches',
-  ),
-  Product(
-    title: "Cartoon Wall Frame",
-    description: "Frame with cartoon characters for Bags and Pouches.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 500,
-    category: 'Bags and Pouches',
-  ),
-  Product(
-    title: "Story Calendar 2025",
-    description: "Calendar with bedtime stories for Bags and Pouches.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 300,
-    category: 'Bags and Pouches',
-  ),
-  Product(
-    title: "Toy Storage Bag",
-    description: "Customized bags for toys.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 700,
-    category: 'Bags and Pouches',
-  ),
-  Product(
-    title: "Bags and Pouches' Stationery Set",
-    description: "Personalized stationery for Bags and Pouches.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 250,
-    category: 'Bags and Pouches',
-  ),
-
-  // Stationery
-  Product(
-    title: "Canvas Print",
-    description: "Beautiful canvas print for home Stationery.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 500,
-    category: 'Stationery',
-  ),
-  Product(
-    title: "Rustic Wall Hanging",
-    description: "Wall hanging with a rustic touch.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 700,
-    category: 'Stationery',
-  ),
-  Product(
-    title: "Photo Clock",
-    description: "Wall clock with your photo.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 800,
-    category: 'Stationery',
-  ),
-  Product(
-    title: "Wooden Frame",
-    description: "Classic wooden frame.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 450,
-    category: 'Stationery',
-  ),
-  Product(
-    title: "Stationeryative Cushion",
-    description: "Personalized cushion for Stationery.",
-    imageUrl:
-        "https://img.freepik.com/free-psd/floral-wedding-horizontal-photo-collage-template_23-2151356714.jpg",
-    price: 600,
-    category: 'Stationery',
+    category: 'Calendars',
   ),
 ];

@@ -3,6 +3,8 @@ import 'package:album_catalog/products/product_model.dart';
 import 'package:android_intent_plus/android_intent.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:photo_view/photo_view.dart'; // Import photo_view package
+import 'package:photo_view/photo_view_gallery.dart'; // Import for gallery view
 
 String formatCurrency(double amount) {
   NumberFormat formatter = NumberFormat.currency(
@@ -64,26 +66,42 @@ class ProductDetailPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Hero(
-                tag: product.title,
-                child: Container(
-                  height: 250,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    image: DecorationImage(
-                      image: NetworkImage(
-                        product.imageUrl,
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ImagePreviewPage(
+                        imageUrl: product.imageUrl,
+                        title: product.title,
                       ),
-                      fit: BoxFit.cover,
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        blurRadius: 8,
-                        offset: Offset(0, 4),
+                  );
+                },
+                child: Hero(
+                  tag: product.title,
+                  child: Container(
+                    height: 250,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(
+                        image: NetworkImage(
+                          product.imageUrl,
+                        ),
+                        fit: product.category == 'Customised Mobile Covers'
+                            ? BoxFit.contain
+                            : BoxFit.cover,
                       ),
-                    ],
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.2),
+                          blurRadius: 8,
+                          offset: Offset(0, 4),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -140,10 +158,6 @@ class ProductDetailPage extends StatelessWidget {
                 (product.description).split('Available Sizes:').last,
                 style: const TextStyle(fontSize: 16.0),
               ),
-              // Text(
-              //   product.imageUrl,
-              //   style: const TextStyle(fontSize: 16.0),
-              // ),
             ],
           ),
         ),
@@ -174,6 +188,104 @@ class ProductDetailPage extends StatelessWidget {
           borderRadius: BorderRadius.circular(100),
         ),
         elevation: 8, // Shadow for the floating button
+      ),
+    );
+  }
+}
+
+// Image Preview Page with zoom-in functionality
+class ImagePreviewPage extends StatelessWidget {
+  final String imageUrl;
+  final String title;
+
+  const ImagePreviewPage(
+      {super.key, required this.imageUrl, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // appBar: AppBar(
+      //   surfaceTintColor: Color(0xFFA40F4F),
+      //   backgroundColor: Color(0xFFA40F4F),
+      //   title: Text(
+      //     title,
+      //     maxLines: 1,
+      //     overflow: TextOverflow.fade,
+      //     style: const TextStyle(
+      //       color: Colors.white,
+      //       fontSize: 18,
+      //       fontWeight: FontWeight.bold,
+      //     ),
+      //   ),
+      //   automaticallyImplyLeading: false,
+      //   leading: GestureDetector(
+      //     onTap: () => Navigator.pop(context),
+      //     child: const Icon(
+      //       Icons.chevron_left_rounded,
+      //       size: 24,
+      //       color: Colors.white,
+      //     ),
+      //   ),
+      // ),
+      body: Stack(
+        children: [
+          Center(
+            child: Hero(
+              tag: title,
+              child: PhotoViewGallery.builder(
+                itemCount: 1,
+                builder: (context, index) {
+                  return PhotoViewGalleryPageOptions(
+                    imageProvider: NetworkImage(imageUrl),
+                    minScale: PhotoViewComputedScale.contained,
+                    maxScale: PhotoViewComputedScale.covered * 2,
+                  );
+                },
+                scrollPhysics: BouncingScrollPhysics(),
+                backgroundDecoration: BoxDecoration(
+                  color: Colors.grey,
+                ),
+                pageController: PageController(),
+              ),
+            ),
+          ),
+          Positioned(
+              child: Container(
+            decoration: BoxDecoration(color: Color(0xFFA40F4F)),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, top: 40, bottom: 20),
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () => Navigator.pop(context),
+                        child: const Icon(
+                          Icons.chevron_left_rounded,
+                          size: 24,
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Text(
+                        title,
+                        maxLines: 1,
+                        overflow: TextOverflow.fade,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          )),
+        ],
       ),
     );
   }

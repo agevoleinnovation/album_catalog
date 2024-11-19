@@ -49,12 +49,15 @@ class CategoryProductPage extends StatelessWidget {
                 // padding: const EdgeInsets.all(12),
                 margin: const EdgeInsets.symmetric(vertical: 12),
                 decoration: BoxDecoration(
+                  color: Colors.white,
                   // borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
                     image: AssetImage(
                       categorizedProducts[category]!['titleImage'],
                     ),
-                    fit: BoxFit.cover,
+                    fit: category == 'Customised Mobile Covers'
+                        ? BoxFit.contain
+                        : BoxFit.cover,
                   ),
                 ),
               ),
@@ -174,13 +177,16 @@ class CategoryProductPage extends StatelessWidget {
                 child: Container(
                   height: 100,
                   decoration: BoxDecoration(
+                    color: Colors.white,
                     borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(7),
                       topRight: Radius.circular(7),
                     ),
                     image: DecorationImage(
-                      image: NetworkImage(product.imageUrl),
-                      fit: BoxFit.cover,
+                      image: AssetImage(product.imageUrl),
+                      fit: category == 'Customised Mobile Covers'
+                          ? BoxFit.contain
+                          : BoxFit.cover,
                     ),
                   ),
                 ),

@@ -221,12 +221,15 @@ class _ProductCatalogPageState extends State<ProductCatalogPage>
               // padding: const EdgeInsets.all(12),
               margin: const EdgeInsets.all(12),
               decoration: BoxDecoration(
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
                   image: AssetImage(
                     categorizedProducts[category]!['titleImage'],
                   ),
-                  fit: BoxFit.cover,
+                  fit: category == 'Customised Mobile Covers'
+                      ? BoxFit.contain
+                      : BoxFit.cover,
                 ),
               ),
             ),
